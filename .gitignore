@@ -1,0 +1,9 @@
+/environment/
+/djackets_vue/node_modules/
+
+*.pyc
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
