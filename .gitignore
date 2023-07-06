@@ -1,5 +1,5 @@
 /environment/
-/djackets_vue/node_modules/
+/djackets_vue/
 
 *.pyc
 *.suo
