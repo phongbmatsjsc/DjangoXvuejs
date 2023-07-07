@@ -39,6 +39,13 @@ class CategoryDetail(APIView):
         serializer = CategorySerializer(category)
         return Response(serializer.data)
     
+
+class CategoryAll(APIView):
+    def get(self, request, format=None):
+        categories_name = Category.objects.all().values('name')
+        return Response(categories_name)
+
+
 @api_view(['POST'])
 def search(request):
     query = request.data.get('query', '')
