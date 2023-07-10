@@ -38,12 +38,12 @@ class ExerciseDetail(APIView):
         serializer = ExerciseSerializer(exercise)
         return Response(serializer.data)
 
-# @api_view(['POST'])
-# def search(request):
-#     query = request.data.get('query', '')
+@api_view(['GET'])
+def search(request):
+    query = request.query_params.get('query', '')
 
-#     if query:
-#         exercises = Exercise.objects.filter(Q(name__icontains=query) | Q(others__icontains=query))
-#         serializer = ExerciseSerializer(exercises, many=True)
-#         return Response(serializer.data)
-#     return Response({"exercises":[]})
+    if query:
+        exercises = Exercise.objects.filter(Q(name__icontains=query) | Q(others__icontains=query))
+        serializer = ExerciseSerializer(exercises, many=True)
+        return Response(serializer.data)
+    return Response({"exercises":[]})

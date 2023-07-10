@@ -6,5 +6,5 @@ urlpatterns = [
     path('type-exercise/', views.TypeExerciseList.as_view()),
     path('exercises/<slug:type_slug>/', views.TypeExcerciseDetail.as_view()),
     path('exercises/<slug:type_slug>/<slug:exercise_slug>/', views.ExerciseDetail.as_view()),
-    # path('exercises/exercise-search/', views.search),
+    path('exercises/exercise-search', views.search),
 ]

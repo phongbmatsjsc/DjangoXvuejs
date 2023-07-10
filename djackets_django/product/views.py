@@ -46,12 +46,12 @@ class CategoryAll(APIView):
         return Response(categories_name)
 
 
-@api_view(['POST'])
+@api_view(['GET'])
 def search(request):
-    query = request.data.get('query', '')
-
+    query = request.query_params.get('query', '')
     if query:
-        products = Product.objects.filter(Q(name__icontains=query ) | Q(description__icontains=query))
+        products = Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
-    return Response({"products": []})
+    else:
+        return Response({"products" : []})
