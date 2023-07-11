@@ -8,12 +8,17 @@ from rest_framework.decorators import api_view
 from .models import TypeExercise, Exercise
 from .serializers import TypeExerciseSerializer, ExerciseSerializer
 
+class LastestExercises(APIView):
+    def get(self, request, format=None):
+        exercises = Exercise.objects.all()[0:4]
+        serializer = ExerciseSerializer(exercises, many=True)
+        return Response(serializer.data)
+
 class TypeExerciseList(APIView):
     def get(self, request, format=None):
         type_names = TypeExercise.objects.all().values('name')
         return Response(type_names)
     
-
 class TypeExcerciseDetail(APIView):
     def get_object(self, type_slug):
         try:
